@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercedes-Benz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090909;
+  --bg2: #111111;
+  --ink: #f2eee6;
+  --ink-dim: #8f8a82;
+  --gold: #caa876;
+  --gold-light: #f2e0b8;
+}
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.beam {
+  position: absolute;
+  left: 14%;
+  top: -10%;
+  width: 3px;
+  height: 120%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--gold-light) 40%,
+    var(--gold) 60%,
+    transparent
+  );
+  box-shadow:
+    0 0 24px 4px rgba(202,168,118,0.45),
+    0 0 60px 12px rgba(202,168,118,0.15);
+  opacity: 0.85;
+  animation: pulse 4s ease-in-out infinite;
+}
+  @keyframes pulse {
+  0%,100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+  .floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38%;
+  background:
+    radial-gradient(
+      ellipse at 40% 0%,
+      rgba(120,110,95,0.18),
+      transparent 70%
+    ),
+    linear-gradient(to bottom, var(--bg2), var(--bg));
+}
+  .brand {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal 1.4s 0.3s ease-out forwards;
+}
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  .brand .mark {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 18px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  position: relative;
+}
+  .brand .mark::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--gold);
+  opacity: 0.5;
+}
+  .brand h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  padding: 0 16px;
+}
+  .brand .tag {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.car-wrap {
+  position: relative;
+  z-index: 2;
+  width: min(640px, 92vw);
+  margin-top: 6vh;
+}
+  .car-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+  .reflection {
+  transform: scaleY(-1);
+  opacity: 0.22;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.5),
+    transparent 70%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.5),
+    transparent 70%
+  );
+  filter: blur(1px);
+}
+  .sheen {
+  animation: sweep 5s ease-in-out infinite;
+}
+  @keyframes sweep {
+  0% {
+    transform: translateX(-140%);
+  }
+  45% {
+    transform: translateX(160%);
+  }
+  100% {
+    transform: translateX(160%);
+  }
+}
+  .scrollhint {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+  .ticker-wrap {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg2);
+  overflow: hidden;
+  padding: 22px 0;
+}
+  .ticker {
+  display: flex;
+  width: max-content;
+  gap: 56px;
+  animation: scroll-x 22s linear infinite;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+  .ticker span {
+  color: var(--gold-light);
+  margin-right: 10px;
+}
+  @keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+  .specs {
+  padding: 80px 24px 100px;
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 32px;
+  text-align: center;
+}
+  .stat b {
+    display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 500;
+  color: var(--ink);
+}
+  .stat p {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+  @media (max-width:520px) {
+  .specs {
+    grid-template-columns: 1fr;
+  }
+      .brand h1 {
+    font-size: 32px;
+  }
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="beam"></div>
+  <div class="floor"></div>
+  <div class="brand">
+    <div class="mark"></div>
+<h1>MERCEDES-BENZ</h1>
+<div class="tag">
+  THE BEST OR NOTHING
+</div>
+  </div>
+  <div class="car-wrap">
+<svg
+  id="carSvg"
+  viewBox="0 0 600 220"
+  aria-label="Luxury car illustration"
+>
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3c3d40"/>
+      <stop offset="45%" stop-color="#17181b"/>
+      <stop offset="70%" stop-color="#45464a"/>
+      <stop offset="100%" stop-color="#0b0c0d"/>
+    </linearGradient>
+        <linearGradient id="rockerShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111214"/>
+      <stop offset="100%" stop-color="#030304"/>
+    </linearGradient>
+        <clipPath id="carClip">
+      <path d="
+        M25,168
+        C25,155 40,146 58,144
+        L95,142
+        C115,110 150,88 195,78
+        C235,69 290,66 340,70
+        C385,74 415,84 432,100
+        C452,104 468,110 480,120
+        L505,124
+        C535,127 558,136 566,152
+        L566,166
+        C566,176 556,181 542,181
+        L478,181
+        C476,198 460,210 442,210
+        C424,210 408,198 406,181
+        L228,181
+        C226,198 210,210 192,210
+        C174,210 158,198 156,181
+        L60,181
+        C40,181 25,178 25,168
+        Z
+      "/>
+    </clipPath>
+      </defs>
+        <g>
+    <path
+      d="
+        M25,168
+        C25,155 40,146 58,144
+        L95,142
+        C115,110 150,88 195,78
+        C235,69 290,66 340,70
+        C385,74 415,84 432,100
+        C452,104 468,110 480,120
+        L505,124
+        C535,127 558,136 566,152
+        L566,166
+        C566,176 556,181 542,181
+        L478,181
+        C476,198 460,210 442,210
+        C424,210 408,198 406,181
+        L228,181
+        C226,198 210,210 192,210
+        C174,210 158,198 156,181
+        L60,181
+        C40,181 25,178 25,168
+        Z
+      "
+      fill="url(#bodyGrad)"
+    />
+    <g clip-path="url(#carClip)">
+      <rect
+        x="0"
+        y="150"
+        width="600"
+        height="60"
+        fill="url(#rockerShade)"
+      />
+    </g>
+        <path
+      d="
+        M205,90
+        C240,76 285,72 325,75
+        C360,78 385,86 400,98
+        L385,101
+        C365,90 335,84 300,83
+        C265,83 232,88 210,100
+        Z
+      "
+      fill="#16171a"
+    />
+        <path
+      d="M60,150 L505,124"
+      stroke="#ffffff"
+      stroke-width="1.5"
+      opacity="0.6"
+    />
+        <circle cx="192" cy="181" r="27" fill="#050506"/>
+    <circle cx="192" cy="181" r="13" fill="#3d4045"/>
+        <circle cx="442" cy="181" r="27" fill="#050506"/>
+    <circle cx="442" cy="181" r="13" fill="#3d4045"/>
+        <rect
+      x="500"
+      y="122"
+      width="18"
+      height="6"
+      rx="2"
+      fill="#f2e0b8"
+    />
+        <rect
+      x="35"
+      y="150"
+      width="14"
+      height="5"
+      rx="2"
+      fill="#8a2020"
+    />
+        <g clip-path="url(#carClip)" class="sheen">
+      <rect
+        x="-60"
+        y="60"
+        width="90"
+        height="160"
+        fill="rgba(242,224,184,0.35)"
+        transform="skewX(-18)"
+      />
+    </g>
+      </g>
+</svg>
+<svg
+  viewBox="0 0 600 220"
+  class="reflection"
+  aria-hidden="true"
+>
+  <use href="#carSvg"></use>
+</svg>
+  </div>
+  <div class="scrollhint">
+    SCROLL TO DISCOVER
+  </div>
+</section>
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div><span>✦</span> LUXURY</div>
+    <div><span>✦</span> PERFORMANCE</div>
+    <div><span>✦</span> ELEGANCE</div>
+    <div><span>✦</span> INNOVATION</div>
+    <div><span>✦</span> LUXURY</div>
+    <div><span>✦</span> PERFORMANCE</div>
+    <div><span>✦</span> ELEGANCE</div>
+    <div><span>✦</span> INNOVATION</div>
+    </div>
+</div>
+<section class="specs">
+  <div class="stat">
+    <b>3.2s</b>
+    <p>0–100 KM/H</p>
+  </div>
+  <div class="stat">
+    <b>585 HP</b>
+    <p>POWER</p>
+  </div>
+  <div class="stat">
+    <b>AMG</b>
+    <p>PERFORMANCE</p>
+  </div>
+</section>
+</body>
+</html>
